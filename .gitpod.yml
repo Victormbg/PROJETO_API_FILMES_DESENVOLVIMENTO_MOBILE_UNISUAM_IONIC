@@ -1,16 +1,14 @@
+image:
+  file: .gitpod.Dockerfile
+
 ports:
-  - port: 8100
+  - port: 8080
     onOpen: open-preview
-  - port: 9000-9999
-    onOpen: ignore
 
 tasks:
-  - name: Update npm
-    command: npm install npm@latest -g
-
-  - name: Install global dependencies
-    before: npm install -g @ionic/cli @angular/cli
-
-  - name: Install project dependencies
-    init: npm update && npm install
-    command: ionic serve --host=localhost --port=8100 --disableHostCheck
+  - init: |
+      nvm install --lts
+      nvm use --lts
+      npm install -g @ionic/cli
+      npm install
+    command: ionic serve --host 0.0.0.0 --port 8080 --no-open
