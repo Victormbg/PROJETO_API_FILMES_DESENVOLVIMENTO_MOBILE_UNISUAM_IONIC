@@ -5,6 +5,12 @@ ports:
     onOpen: ignore
 
 tasks:
-  - before: npm install -g @ionic/cli && npm install -g @angular/cli
-    init: npm install
+  - name: Update npm
+    command: npm install npm@latest -g
+
+  - name: Install global dependencies
+    before: npm install -g @ionic/cli @angular/cli
+
+  - name: Install project dependencies
+    init: npm update && npm install
     command: ionic serve --host=localhost --port=8100 --disableHostCheck
