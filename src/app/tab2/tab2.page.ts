@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { configFromSession } from '@ionic/core/dist/types/global/config';
 import { MoviesService } from '../theMovieDB/movies.service';
+import { InfiniteScrollCustomEvent, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab2',
@@ -9,20 +9,19 @@ import { MoviesService } from '../theMovieDB/movies.service';
   providers: [MoviesService],
 })
 export class Tab2Page {
-  public objetoFeed = {
-    subtitulo: 'subtitulo',
-    titulo: 'titulo',
-    conteudo: 'conteudo',
-    imagem: 'https://docs-demo.ionic.io/assets/madison.jpg',
-  };
-
-  constructor(public movieService: MoviesService) {}
 
   public lista_filmes = new Array<any>();
   public page: number = 1;
 
+  constructor(public movieService: MoviesService, private loadingController: LoadingController) { }
+
+  ionViewDidEnter() {
+    this.efeitoLoading();
+    this.carregaPagina();
+  }
+
   carregaPagina() {
-    this.movieService.getPopularMovies(1, 'pt-BR').subscribe(
+    this.movieService.getPopularMovies(this.page, 'pt-BR').subscribe(
       (data) => {
         const response = data as any;
         if (this.page == 1) {
@@ -37,7 +36,7 @@ export class Tab2Page {
       }
     );
   }
-  /*
+
   async efeitoLoading() {
     const loading = await this.loadingController.create({
       message: 'Carregando Filmes',
@@ -46,7 +45,7 @@ export class Tab2Page {
     await loading.present();
     const { role, data } = await loading.onDidDismiss();
   }
-  */
+
   efeitoRefresh(event: any) {
     this.page = 1;
     this.carregaPagina();
@@ -58,8 +57,12 @@ export class Tab2Page {
     }, 500);
   }
 
-  ionViewDidEnter() {
-    //this.efeitoLoading();
-    this.carregaPagina();
+  efeitoScrollInfinito(ev: any) {
+    this.page++;
+    setTimeout(() => {
+      (ev as InfiniteScrollCustomEvent).target.complete();
+      this.carregaPagina();
+    }, 1000);
   }
+
 }
