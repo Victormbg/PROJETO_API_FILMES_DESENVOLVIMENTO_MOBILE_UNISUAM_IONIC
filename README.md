@@ -14,3 +14,14 @@ Projeto de API de Filmes para matéria de Desenvolvimento Mobile da Faculdade UN
 4. Em seguida, ele dividirá a tela e abrirá uma tela com o app rodando como se você tivesse o localhost aberto no navegador.
 
 5. Pronto!
+
+
+# AJUDA
+
+## Icone
+Criar a pasta resources com todos os 5 arquivos:
+* Link: https://capacitorjs.com/docs/guides/splash-screens-and-icons
+
+# Build no Android
+Usar o comando: ionic capacitor build android
+* Link: https://ionicframework.com/docs/cli/commands/capacitor-build
