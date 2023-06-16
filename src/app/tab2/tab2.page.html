@@ -1,15 +1,15 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" class="custom-header">
   <ion-toolbar>
-    <ion-title> Feed de Filmes </ion-title>
+    <ion-title class="custom-title">Feed de Filmes</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-refresher slot="fixed" (ionRefresh)="efeitoRefresh($event)">
+<ion-content [fullscreen]="true" class="custom-content">
+  <ion-refresher slot="fixed" (ionRefresh)="efeitoRefresh($event)" class="custom-refresher">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <ion-fab slot="fixed" vertical="top" horizontal="end" [edge]="true">
+  <ion-fab slot="fixed" vertical="top" horizontal="end" [edge]="true" class="custom-fab">
     <ion-fab-button>
       <ion-icon name="chevron-down-circle"></ion-icon>
     </ion-fab-button>
@@ -20,7 +20,7 @@
     </ion-fab-list>
   </ion-fab>
 
-  <ion-card *ngFor="let filme of lista_filmes">
+  <ion-card *ngFor="let filme of lista_filmes" class="custom-card">
     <ion-img [src]="'https://image.tmdb.org/t/p/w500/' + filme.backdrop_path"></ion-img>
     <ion-card-header>
       <ion-card-title>{{filme.title}}</ion-card-title>
@@ -28,7 +28,8 @@
     </ion-card-header>
     <ion-card-content>{{filme.overview}}</ion-card-content>
   </ion-card>
-  <ion-infinite-scroll (ionInfinite)="efeitoScrollInfinito($event)">
+
+  <ion-infinite-scroll (ionInfinite)="efeitoScrollInfinito($event)" class="custom-infinite-scroll">
     <ion-infinite-scroll-content loadingText="Carregando..." loadingSpinner="bubbles"></ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>

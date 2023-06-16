@@ -25,3 +25,7 @@ Criar a pasta resources com todos os 5 arquivos:
 # Build no Android
 Usar o comando: ionic capacitor build android
 * Link: https://ionicframework.com/docs/cli/commands/capacitor-build
+
+# Roda no simulador
+Usar o comando: ionic capacitor run android
+* Link: https://ionicframework.com/docs/cli/commands/capacitor-run
