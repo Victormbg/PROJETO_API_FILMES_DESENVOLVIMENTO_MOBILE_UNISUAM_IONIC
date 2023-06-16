@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MoviesService } from '../theMovieDB/movies.service';
 import { InfiniteScrollCustomEvent, LoadingController } from '@ionic/angular';
+import { App } from '@capacitor/app';
 
 @Component({
   selector: 'app-tab2',
@@ -63,6 +64,10 @@ export class Tab2Page {
       (ev as InfiniteScrollCustomEvent).target.complete();
       this.carregaPagina();
     }, 1000);
+  }
+
+  sair() {
+    App.exitApp();
   }
 
 }
