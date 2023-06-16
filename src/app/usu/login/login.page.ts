@@ -26,6 +26,11 @@ export class LoginPage implements OnInit {
   loginUsuario() {
     this.autenticacaoService.loginNoFirebase(this.email, this.senha)
       .then((res) => {
+        // Acessando os dados do usuário logado
+        const user = (res as any).user;
+        const uid = user.uid; // ID do usuário
+        const email = user.email; // E-mail do usuário
+        console.log(`Usuário logado: Email - ${email}, ID - ${uid}`);
         this.router.navigate(['app/tabs/tab1']);
       }).catch((error) => {
         console.log(error)
